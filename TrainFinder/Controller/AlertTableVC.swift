@@ -15,16 +15,20 @@ class AlertTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTable()
         request()
-       
-        size = CGSize(width: 272, height: 300)
+    }
+    
+    func configureTable() {
+        ShareView.shared.setBackground(view: view)
+        size = CGSize(width: 272, height: 280)
         self.preferredContentSize = size!
         self.tableView.register(UINib(nibName: "AlertViewTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
     }
     
     //MARK:撈api資料
     func loadData(complete: @escaping([Station_TicketType]) -> Void) {
-        let DateStation = "https://ptx.transportdata.tw/MOTC/v2/Rail/TRA/ODFare/\(OriginStationID)/to/\(DestinationStationID)?$top=30&$format=JSON"
+        let DateStation = "https://ptx.transportdata.tw/MOTC/v2/Rail/\(newTrainTypeStr)/ODFare/\(OriginStationID)/to/\(DestinationStationID)?$top=30&$format=JSON"
         
         guard let url = URL(string: DateStation) else { return }
         var request = URLRequest(url: url)
@@ -72,7 +76,7 @@ class AlertTableVC: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 45
+        return 40
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

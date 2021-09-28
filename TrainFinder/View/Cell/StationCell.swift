@@ -18,37 +18,59 @@ class StationCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setText()
+        configureUI()
     }
     
-    func setText() {
+    func configureUI() {
+        self.backgroundColor = .clear
         startTime.font = UIFont.boldSystemFont(ofSize: 20)
         endTime.font = UIFont.boldSystemFont(ofSize: 20)
-        startTime.textColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        endTime.textColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        delayTime.font = UIFont.boldSystemFont(ofSize: 20)
     }
     
-    func setContent() {
-        self.backgroundColor = .clear
-        trainTypeName.text = data?.trainTypeName
-        trainNo.text = data?.trainNo
-        startTime.text = data?.arrivalTime
-        endTime.text = data?.departureTime
+    func setupData() {
+        //去除火車車種名字後()的特別註記
+        let name = data?.trainTypeName
+        let newName = name?.components(separatedBy: "(")
+        let trainName = newName?[0]
+        
+        self.trainTypeName.text = trainName
+        self.trainNo.text = "\(data?.trainNo ?? "")次"
+        self.startTime.text = data?.arrivalTime
+        self.endTime.text = data?.departureTime
         
         if ShareView.shared.timeToTimeStamp(time: ShareView.shared.nowTime()) > ShareView.shared.timeToTimeStamp(time: data?.arrivalTime ?? "") {
-            delayTime.text = "已過站"
+            delayTime.text = "已出發"
             delayTime.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+            startTime.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+            endTime.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         } else {
             if data?.delayTime == 0 {
-                delayTime.text = "準點"
+                delayTime.text = "準時"
                 delayTime.textColor = #colorLiteral(red: 0, green: 0.5603182912, blue: 0, alpha: 1)
             } else {
                 delayTime.text = "晚\(String(data?.delayTime ?? 0))分"
                 delayTime.textColor = #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)
             }
+            startTime.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            endTime.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         }
         
+        switch trainName {
+        case "區間":
+            trainTypeName.textColor = #colorLiteral(red: 0.1366842985, green: 0.1123107448, blue: 0.9438511729, alpha: 1)
+        case "區間快":
+            trainTypeName.textColor = #colorLiteral(red: 0.1366842985, green: 0.1123107448, blue: 0.9438511729, alpha: 1)
+        case "莒光":
+            trainTypeName.textColor = #colorLiteral(red: 0, green: 0.5603182912, blue: 0, alpha: 1)
+        case "自強":
+            trainTypeName.textColor = #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)
+        default:
+            trainTypeName.textColor = #colorLiteral(red: 1, green: 0.001573321293, blue: 0.0555190295, alpha: 1)
+        }
     }
+    
+    
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

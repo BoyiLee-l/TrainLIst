@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		8E2BBB11EA6630CDD2C60DEE /* Pods_TrainFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7A114E3626F79E8FD61DBC8 /* Pods_TrainFinder.framework */; };
-		CE07818D26086D6600FB0200 /* Station_DateStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07818C26086D6600FB0200 /* Station_DateStation.swift */; };
+		CE07818D26086D6600FB0200 /* Tra_DateStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07818C26086D6600FB0200 /* Tra_DateStation.swift */; };
 		CE21122925F610DC003FD5B8 /* Train_Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE21122825F610DC003FD5B8 /* Train_Api.swift */; };
 		CE21123025F61840003FD5B8 /* Station_Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE21122F25F61840003FD5B8 /* Station_Information.swift */; };
-		CE4700392601FFDE002DCE73 /* SerachVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4700382601FFDE002DCE73 /* SerachVC.swift */; };
+		CE4700392601FFDE002DCE73 /* TraVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4700382601FFDE002DCE73 /* TraVc.swift */; };
 		CE6D02DF2609F1E2008139B0 /* AlertTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D02DE2609F1E2008139B0 /* AlertTableVC.swift */; };
 		CE6D02E42609F3AE008139B0 /* AlertViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D02E22609F3AE008139B0 /* AlertViewTableViewCell.swift */; };
 		CE6D02E52609F3AE008139B0 /* AlertViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE6D02E32609F3AE008139B0 /* AlertViewTableViewCell.xib */; };
@@ -25,7 +25,7 @@
 		CEAB6B1325F5F2CF00DEC301 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAB6B1125F5F2CF00DEC301 /* Main.storyboard */; };
 		CEAB6B1525F5F2D100DEC301 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEAB6B1425F5F2D100DEC301 /* Assets.xcassets */; };
 		CEAB6B1825F5F2D100DEC301 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAB6B1625F5F2D100DEC301 /* LaunchScreen.storyboard */; };
-		CEAB6B2725F5FF4700DEC301 /* GetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAB6B2625F5FF4700DEC301 /* GetData.swift */; };
+		CEAB6B2725F5FF4700DEC301 /* ServerCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAB6B2625F5FF4700DEC301 /* ServerCommunicator.swift */; };
 		CEBFD3CF2611B9E60075D2D8 /* train2.gif in Resources */ = {isa = PBXBuildFile; fileRef = CEBFD3CE2611B9E60075D2D8 /* train2.gif */; };
 		CECDC300260DE62C00B1A405 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECDC2FF260DE62C00B1A405 /* UIImage+Gif.swift */; };
 		CECDC303260DE63A00B1A405 /* train.gif in Resources */ = {isa = PBXBuildFile; fileRef = CECDC302260DE63A00B1A405 /* train.gif */; };
@@ -35,15 +35,18 @@
 		CEEE42C7260C3F3800CD426D /* StopTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE42C5260C3F3800CD426D /* StopTimeCell.swift */; };
 		CEEE42C8260C3F3800CD426D /* StopTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEEE42C6260C3F3800CD426D /* StopTimeCell.xib */; };
 		CEEE42CC260C867000CD426D /* Station_DelayTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE42CB260C867000CD426D /* Station_DelayTime.swift */; };
+		CEF9171B26F32D2400FD7785 /* ThsrVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF9171A26F32D2400FD7785 /* ThsrVc.swift */; };
+		CEF9171D26F3392200FD7785 /* TabBarVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF9171C26F3392200FD7785 /* TabBarVc.swift */; };
+		CEF9172026FDB0D500FD7785 /* Thsr_DateStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF9171F26FDB0D500FD7785 /* Thsr_DateStation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		58F325845229FE1AC7DD1E01 /* Pods-TrainFinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainFinder.debug.xcconfig"; path = "Target Support Files/Pods-TrainFinder/Pods-TrainFinder.debug.xcconfig"; sourceTree = "<group>"; };
 		635F9E9ED437DD651F41FA0A /* Pods-TrainFinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainFinder.release.xcconfig"; path = "Target Support Files/Pods-TrainFinder/Pods-TrainFinder.release.xcconfig"; sourceTree = "<group>"; };
-		CE07818C26086D6600FB0200 /* Station_DateStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station_DateStation.swift; sourceTree = "<group>"; };
+		CE07818C26086D6600FB0200 /* Tra_DateStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tra_DateStation.swift; sourceTree = "<group>"; };
 		CE21122825F610DC003FD5B8 /* Train_Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Train_Api.swift; sourceTree = "<group>"; };
 		CE21122F25F61840003FD5B8 /* Station_Information.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station_Information.swift; sourceTree = "<group>"; };
-		CE4700382601FFDE002DCE73 /* SerachVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerachVC.swift; sourceTree = "<group>"; };
+		CE4700382601FFDE002DCE73 /* TraVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraVc.swift; sourceTree = "<group>"; };
 		CE6D02DE2609F1E2008139B0 /* AlertTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTableVC.swift; sourceTree = "<group>"; };
 		CE6D02E22609F3AE008139B0 /* AlertViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewTableViewCell.swift; sourceTree = "<group>"; };
 		CE6D02E32609F3AE008139B0 /* AlertViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertViewTableViewCell.xib; sourceTree = "<group>"; };
@@ -61,7 +64,7 @@
 		CEAB6B1425F5F2D100DEC301 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEAB6B1725F5F2D100DEC301 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEAB6B1925F5F2D100DEC301 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CEAB6B2625F5FF4700DEC301 /* GetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetData.swift; sourceTree = "<group>"; };
+		CEAB6B2625F5FF4700DEC301 /* ServerCommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerCommunicator.swift; sourceTree = "<group>"; };
 		CEBFD3CE2611B9E60075D2D8 /* train2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = train2.gif; sourceTree = "<group>"; };
 		CECDC2FF260DE62C00B1A405 /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
 		CECDC302260DE63A00B1A405 /* train.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = train.gif; sourceTree = "<group>"; };
@@ -71,6 +74,9 @@
 		CEEE42C5260C3F3800CD426D /* StopTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopTimeCell.swift; sourceTree = "<group>"; };
 		CEEE42C6260C3F3800CD426D /* StopTimeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StopTimeCell.xib; sourceTree = "<group>"; };
 		CEEE42CB260C867000CD426D /* Station_DelayTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station_DelayTime.swift; sourceTree = "<group>"; };
+		CEF9171A26F32D2400FD7785 /* ThsrVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThsrVc.swift; sourceTree = "<group>"; };
+		CEF9171C26F3392200FD7785 /* TabBarVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVc.swift; sourceTree = "<group>"; };
+		CEF9171F26FDB0D500FD7785 /* Thsr_DateStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thsr_DateStation.swift; sourceTree = "<group>"; };
 		E7A114E3626F79E8FD61DBC8 /* Pods_TrainFinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrainFinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -103,16 +109,17 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		CE21122E25F617EF003FD5B8 /* Models */ = {
+		CE21122E25F617EF003FD5B8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				CE21122F25F61840003FD5B8 /* Station_Information.swift */,
-				CE07818C26086D6600FB0200 /* Station_DateStation.swift */,
+				CE07818C26086D6600FB0200 /* Tra_DateStation.swift */,
+				CEF9171F26FDB0D500FD7785 /* Thsr_DateStation.swift */,
 				CE6D02E82609F75E008139B0 /* Station_TicketType.swift */,
 				CEEE42BF260C355900CD426D /* Station_StopTime.swift */,
 				CEEE42CB260C867000CD426D /* Station_DelayTime.swift */,
 			);
-			path = Models;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		CE7729A026253C4500B35784 /* SupportingFiles */ = {
@@ -126,12 +133,13 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		CE8F36E22601B5A6002781D6 /* Extensions */ = {
+		CE8F36E22601B5A6002781D6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CECDC2FE260DE61200B1A405 /* Gif */,
 				CE8F36E32601B5C4002781D6 /* ShareView.swift */,
 			);
-			path = Extensions;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		CEAB6AFF25F5F2CF00DEC301 = {
@@ -156,9 +164,8 @@
 			isa = PBXGroup;
 			children = (
 				CE7729A026253C4500B35784 /* SupportingFiles */,
-				CECDC2FE260DE61200B1A405 /* Gif */,
-				CE8F36E22601B5A6002781D6 /* Extensions */,
-				CE21122E25F617EF003FD5B8 /* Models */,
+				CE8F36E22601B5A6002781D6 /* Utils */,
+				CE21122E25F617EF003FD5B8 /* Model */,
 				CEAB6B2125F5FB5D00DEC301 /* View */,
 				CEAB6B3F25F606F000DEC301 /* Controller */,
 				CEAB6B2525F5FEC200DEC301 /* Service */,
@@ -200,7 +207,7 @@
 		CEAB6B2525F5FEC200DEC301 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				CEAB6B2625F5FF4700DEC301 /* GetData.swift */,
+				CEAB6B2625F5FF4700DEC301 /* ServerCommunicator.swift */,
 				CE21122825F610DC003FD5B8 /* Train_Api.swift */,
 			);
 			path = Service;
@@ -209,7 +216,9 @@
 		CEAB6B3F25F606F000DEC301 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CE4700382601FFDE002DCE73 /* SerachVC.swift */,
+				CEF9171C26F3392200FD7785 /* TabBarVc.swift */,
+				CE4700382601FFDE002DCE73 /* TraVc.swift */,
+				CEF9171A26F32D2400FD7785 /* ThsrVc.swift */,
 				CEAB6B0F25F5F2CF00DEC301 /* StationVC.swift */,
 				CEEE42C2260C3D7200CD426D /* StopTimeVC.swift */,
 				CE6D02DE2609F1E2008139B0 /* AlertTableVC.swift */,
@@ -350,18 +359,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEAB6B2725F5FF4700DEC301 /* GetData.swift in Sources */,
+				CEF9172026FDB0D500FD7785 /* Thsr_DateStation.swift in Sources */,
+				CEAB6B2725F5FF4700DEC301 /* ServerCommunicator.swift in Sources */,
 				CE6D02E42609F3AE008139B0 /* AlertViewTableViewCell.swift in Sources */,
+				CEF9171D26F3392200FD7785 /* TabBarVc.swift in Sources */,
 				CEEE42C7260C3F3800CD426D /* StopTimeCell.swift in Sources */,
 				CEAB6B1025F5F2CF00DEC301 /* StationVC.swift in Sources */,
 				CE21123025F61840003FD5B8 /* Station_Information.swift in Sources */,
 				CE21122925F610DC003FD5B8 /* Train_Api.swift in Sources */,
 				CEEE42C0260C355900CD426D /* Station_StopTime.swift in Sources */,
-				CE07818D26086D6600FB0200 /* Station_DateStation.swift in Sources */,
+				CE07818D26086D6600FB0200 /* Tra_DateStation.swift in Sources */,
 				CEEE42CC260C867000CD426D /* Station_DelayTime.swift in Sources */,
 				CE8F36E42601B5C4002781D6 /* ShareView.swift in Sources */,
 				CE6D02E92609F75E008139B0 /* Station_TicketType.swift in Sources */,
-				CE4700392601FFDE002DCE73 /* SerachVC.swift in Sources */,
+				CE4700392601FFDE002DCE73 /* TraVc.swift in Sources */,
+				CEF9171B26F32D2400FD7785 /* ThsrVc.swift in Sources */,
 				CECDC300260DE62C00B1A405 /* UIImage+Gif.swift in Sources */,
 				CE6D02DF2609F1E2008139B0 /* AlertTableVC.swift in Sources */,
 				CEAB6B0C25F5F2CF00DEC301 /* AppDelegate.swift in Sources */,
@@ -523,6 +535,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6FD29B8334;
 				INFOPLIST_FILE = "$(SRCROOT)/TrainFinder/SupportingFiles/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -545,6 +558,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6FD29B8334;
 				INFOPLIST_FILE = "$(SRCROOT)/TrainFinder/SupportingFiles/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

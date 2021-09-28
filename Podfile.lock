@@ -7,7 +7,6 @@ PODS:
   - SCLAlertView (0.8)
   - SnapKit (5.0.1)
   - SVProgressHUD (2.2.5)
-  - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -16,7 +15,6 @@ DEPENDENCIES:
   - SCLAlertView
   - SnapKit
   - SVProgressHUD
-  - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
   trunk:
@@ -26,7 +24,6 @@ SPEC REPOS:
     - SCLAlertView
     - SnapKit
     - SVProgressHUD
-    - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
@@ -35,8 +32,7 @@ SPEC CHECKSUMS:
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: c586cd0b232885771c9c0a8e414e94905ee43756
+PODFILE CHECKSUM: d6cf68d6c44255931a7b5328827b2047346db7d3
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.1

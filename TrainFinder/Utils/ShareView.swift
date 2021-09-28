@@ -8,7 +8,9 @@
 import UIKit
 
 class ShareView {
+    
     static let shared = ShareView()
+    
     var spinner: UIActivityIndicatorView = {
         let activityView = UIActivityIndicatorView()
         if #available(iOS 13.0, *) {
@@ -52,14 +54,15 @@ class ShareView {
     }
     
     func setBackground(view: UIView){
-        let colour1 = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1).cgColor
-        let colour2 = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1).cgColor
-        let colour3 = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1).cgColor
-        let gradient = CAGradientLayer()
-        gradient.frame = view.frame
-        gradient.colors = [colour3,colour2,colour1]
-        gradient.locations = [ 0.412,0.822]
-        view.layer.insertSublayer(gradient, at: 0)
+//        let colour1 = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1).cgColor
+//        let colour2 = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1).cgColor
+//        let colour3 = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1).cgColor
+//        let gradient = CAGradientLayer()
+//        gradient.frame = view.frame
+//        gradient.colors = [colour3,colour2,colour1]
+//        gradient.locations = [ 0.412,0.822]
+//        view.layer.insertSublayer(gradient, at: 0)
+        view.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.9568627451, blue: 0.9568627451, alpha: 1)
     }
 }
 
@@ -89,5 +92,10 @@ extension UIViewController {
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         controller.addAction(okAction)
         self.present(controller, animated: true, completion: nil)
+    }
+    
+    func dataToString(data:Data?)->String{
+        if let d = data,let str = String(data: d, encoding: .utf8){
+            print(str);return str}else{print("轉String失敗");return "轉String失敗"}
     }
 }

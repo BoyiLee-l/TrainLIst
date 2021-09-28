@@ -21,18 +21,21 @@ class StopTimeCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = .clear
-        setText()
+        configureUI()
     }
     
-    func setText() {
+    func configureUI() {
+        self.backgroundColor = .clear
+        
         stationNameLabel.font = UIFont.boldSystemFont(ofSize: 20)
         arrivalTimeLabel.font = UIFont.boldSystemFont(ofSize: 20)
         departureTimeLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        arrivalTimeLabel.textColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        departureTimeLabel.textColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        
+        arrivalTimeLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        departureTimeLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     }
     
-    func setContent() {
+    func setupData() {
         stationNameLabel.text = data?.stationName?.zhTw
         arrivalTimeLabel.text = data?.arrivalTime
         departureTimeLabel.text = data?.departureTime

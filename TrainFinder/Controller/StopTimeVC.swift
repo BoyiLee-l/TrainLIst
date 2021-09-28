@@ -8,32 +8,41 @@
 import UIKit
 
 class StopTimeVC: UIViewController {
-
+    
+    //MARK: - Properties
     @IBOutlet weak var myTableView: UITableView!
     var dataList = [StopTime]()
     var trainNO = ""
     var trainDate = ""
     
+    //MARK: - Lifeycle
     override func viewDidLoad() {
         super.viewDidLoad()
-//        ShareView.shared.setBackground(view: view)
+        configureUI()
         setTable()
+        request()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        request()
+//        request()
     }
+    
+    func configureUI() {
+        ShareView.shared.setBackground(view: view)
+        self.navigationItem.title = trainNO
+    }
+    
     //MARK:設定table
     func setTable() {
         myTableView.delegate = self
         myTableView.dataSource = self
-//        myTableView.backgroundColor = .clear
+        myTableView.backgroundColor = .clear
         myTableView.register(UINib(nibName: "StopTimeCell", bundle: nil), forCellReuseIdentifier: "cell")
     }
     
     //MARK:撈api資料
     func loadData(complete: @escaping([Station_StopTime]) -> Void) {
-        let stopTimeUrl = "https://ptx.transportdata.tw/MOTC/v2/Rail/TRA/DailyTimetable/TrainNo/\(trainNO)/TrainDate/\(trainDate)?$top=30&$format=JSON"
+        let stopTimeUrl = "https://ptx.transportdata.tw/MOTC/v2/Rail/\(newTrainTypeStr)/DailyTimetable/TrainNo/\(trainNO)/TrainDate/\(trainDate)?$top=30&$format=JSON"
         print("url:", stopTimeUrl)
         guard let url = URL(string: stopTimeUrl) else { return }
         var request = URLRequest(url: url)
@@ -89,7 +98,7 @@ extension StopTimeVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)as! StopTimeCell
         let cellData = dataList[indexPath.row]
         cell.data = cellData
-        cell.setContent()
+        cell.setupData()
         //下條件撈出到達時間 大於 現在時間
         let result = dataList.filter { (i) -> Bool in
             return cell.time <= ShareView.shared.timeToTimeStamp(time: i.arrivalTime)
@@ -97,10 +106,13 @@ extension StopTimeVC: UITableViewDelegate, UITableViewDataSource {
         //在跟陣列中時間比對 <= 最接近的到達時間
         if cellData.arrivalTime ==  result.first?.arrivalTime ?? "" {
             cell.myGif.loadGif(name: "train2")
-        } else if ShareView.shared.timeToTimeStamp(time:cellData.departureTime) < cell.time {
+            cell.stationNameLabel.textColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+        } else if ShareView.shared.timeToTimeStamp(time:cellData.departureTime) <= cell.time {
             cell.myGif.image = UIImage(named: "pass")
+            cell.stationNameLabel.textColor = #colorLiteral(red: 0.04386587473, green: 0.7064148036, blue: 0.3536839813, alpha: 1)
         } else {
             cell.myGif.image = UIImage(named: "")
+            cell.stationNameLabel.textColor = #colorLiteral(red: 0.05110876679, green: 0.2072706686, blue: 0.7945691506, alpha: 1)
         }
         return cell
     }

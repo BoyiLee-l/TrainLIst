@@ -7,7 +7,6 @@ target 'TrainFinder' do
 
   # Pods for TrainFinder
  pod 'Alamofire'
- pod 'SwiftyJSON', '~> 4.0'
  pod 'SVProgressHUD'
  pod 'SCLAlertView'
  pod 'MarqueeLabel'

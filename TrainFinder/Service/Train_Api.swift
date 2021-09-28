@@ -41,7 +41,27 @@ enum CryptoAlgorithm {
     }
 }
 
-let Information = "https://ptx.transportdata.tw/MOTC/v2/Rail/TRA/Station?&$format=JSON"
+enum TrainType {
+    case 台鐵
+    case 高鐵
+}
+
+var trainType: TrainType = .台鐵 {
+    didSet {
+        if trainType == .台鐵 {
+            Information = "https://ptx.transportdata.tw/MOTC/v2/Rail/TRA/Station?$format=JSON"
+            newTrainTypeStr = "TRA"
+        } else {
+            Information = "https://ptx.transportdata.tw/MOTC/v2/Rail/THSR/Station?$format=JSON"
+            newTrainTypeStr = "THSR"
+        }
+    }
+}
+//台鐵,高鐵型態變數
+var newTrainTypeStr = "TRA"
+
+//鐵路基本資料api網址
+var Information = "https://ptx.transportdata.tw/MOTC/v2/Rail/TRA/Station?$format=JSON"
 
 let APP_ID = "0c9ad3c533b048f28c94ad79974481de"
 let APP_KEY = "JJCm4gIjuobzDW3-A9uX5Iaw-4Y"
