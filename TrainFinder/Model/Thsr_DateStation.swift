@@ -8,9 +8,9 @@
 import Foundation
 
 struct Thsr_DateStation: Codable {
-    let dailyTrainInfo : HsrDailyTrainInfo?
-    let destinationStopTime : HsrDestinationStopTime?
-    let originStopTime : HsrDestinationStopTime?
+    let dailyTrainInfo : ThsrDailyTrainInfo?
+    let destinationStopTime : ThsrDestinationStopTime?
+    let originStopTime : ThsrDestinationStopTime?
     let trainDate : String?
     let updateTime : String?
     let versionID : Int?
@@ -25,11 +25,11 @@ struct Thsr_DateStation: Codable {
     }
 }
 
-struct HsrDestinationStopTime : Codable {
+struct ThsrDestinationStopTime : Codable {
     let arrivalTime : String?
     let departureTime : String?
     let stationID : String?
-    let stationName : HsrEndingStationName?
+    let stationName : ThsrEndingStationName?
     let stopSequence : Int?
     
     
@@ -42,12 +42,12 @@ struct HsrDestinationStopTime : Codable {
     }
 }
 
-struct HsrDailyTrainInfo : Codable {
+struct ThsrDailyTrainInfo : Codable {
     let direction : Int?
     let endingStationID : String?
-    let endingStationName : HsrEndingStationName?
+    let endingStationName : ThsrEndingStationName?
     let startingStationID : String?
-    let startingStationName : HsrEndingStationName?
+    let startingStationName : ThsrEndingStationName?
     let trainNo : String?
     
     enum CodingKeys: String, CodingKey {
@@ -60,7 +60,7 @@ struct HsrDailyTrainInfo : Codable {
     }
 }
 
-struct HsrEndingStationName : Codable {
+struct ThsrEndingStationName : Codable {
     let en : String?
     let zhTw : String?
 

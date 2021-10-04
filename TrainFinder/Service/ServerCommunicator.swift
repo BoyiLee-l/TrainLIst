@@ -44,8 +44,9 @@ class ServerCommunicator {
                       trainDate:String,
                       complete: @escaping([Tra_DateStation]) -> Void) {
         
-        let DateStationUrl = "https://ptx.transportdata.tw/MOTC/v2/Rail/\(newTrainTypeStr)/DailyTimetable/OD/\(originStationID)/to/\(destinationStationID)/\(trainDate)?&$format=JSON"
-        guard let url = URL(string: DateStationUrl) else { return }
+        let dateStationUrl = "https://ptx.transportdata.tw/MOTC/v2/Rail/\(newTrainTypeStr)/DailyTimetable/OD/\(originStationID)/to/\(destinationStationID)/\(trainDate)?$format=JSON"
+        print(dateStationUrl)
+        guard let url = URL(string: dateStationUrl) else { return }
         var request = URLRequest(url: url)
         request.setValue(xdate, forHTTPHeaderField: "x-date")
         request.setValue(authorization, forHTTPHeaderField: "Authorization")
@@ -78,8 +79,8 @@ class ServerCommunicator {
                       trainDate:String,
                       complete: @escaping([Thsr_DateStation]) -> Void) {
         
-        let DateStationUrl = "https://ptx.transportdata.tw/MOTC/v2/Rail/\(newTrainTypeStr)/DailyTimetable/OD/\(originStationID)/to/\(destinationStationID)/\(trainDate)?&$format=JSON"
-        guard let url = URL(string: DateStationUrl) else { return }
+        let dateStationUrl = "https://ptx.transportdata.tw/MOTC/v2/Rail/\(newTrainTypeStr)/DailyTimetable/OD/\(originStationID)/to/\(destinationStationID)/\(trainDate)?$format=JSON"
+        guard let url = URL(string: dateStationUrl) else { return }
         var request = URLRequest(url: url)
         request.setValue(xdate, forHTTPHeaderField: "x-date")
         request.setValue(authorization, forHTTPHeaderField: "Authorization")

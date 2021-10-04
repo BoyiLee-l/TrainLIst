@@ -246,7 +246,7 @@ class TraVc: UIViewController {
                     }
                     self.pickArr[c] = arr
                 }
-                print(self.pickArr)
+//                print(self.pickArr)
                 DispatchQueue.main.async {
                     ShareView.shared.stopLoading()
                     print(self.cityList.count)

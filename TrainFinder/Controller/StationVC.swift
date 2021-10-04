@@ -54,6 +54,8 @@ class StationVC: UIViewController {
     
     var dateStation: Codable?
     
+    var todayString = ""
+    
     //MARK: - Lifeycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +73,12 @@ class StationVC: UIViewController {
 //        } else {
 //            newTrainTypeStr = "THSR"
 //        }
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "yyyy-MM-dd"
+        todayString = formatter.string(from: Date())
+        print("日期",todayString)
+        
         print("列車型別：",newTrainTypeStr)
         print("座位類別", choseSeat ,originStationID ,destinationStationID, trainDate)
     }
@@ -130,6 +138,7 @@ class StationVC: UIViewController {
             switch trainType {
             case.台鐵 :
                 ServerCommunicator.shared.loadThsrData(newTrainTypeStr: newTrainTypeStr, originStationID: self.originStationID, destinationStationID: self.destinationStationID, trainDate: self.trainDate) {(data) in
+            
                     if data.isEmpty {
                         DispatchQueue.main.async {
                             self.alert(title: "查無相關車次", message: "該班可能無直達車需轉乘")
@@ -148,7 +157,7 @@ class StationVC: UIViewController {
                             break
                         case .所有車種:
                             self.traDateStation = data
-                            break
+                            
                         }
                     }
                     // 結束呼叫 API1
@@ -183,7 +192,6 @@ class StationVC: UIViewController {
                                                              departureTime: newData.destinationStopTime?.departureTime ?? "",
                                                              delayTime: self.dealyDic[newData.dailyTrainInfo?.trainNo ?? ""] ?? 0))
                     }
-                    
                 }
             case.高鐵 :
                 ServerCommunicator.shared.loadHsrData(newTrainTypeStr: newTrainTypeStr, originStationID: self.originStationID, destinationStationID: self.destinationStationID, trainDate: self.trainDate) {(data) in
@@ -192,6 +200,7 @@ class StationVC: UIViewController {
                         DispatchQueue.main.async {
                             self.alert(title: "查無相關車次", message: "該班可能無直達車需轉乘")
                         }
+                        
                     } else {
                         self.thsrDateStation = data
                         print("高鐵：",self.thsrDateStation)
@@ -205,19 +214,7 @@ class StationVC: UIViewController {
                 }
             }
         }
-        //        let queue2 = DispatchQueue(label: "queue2", attributes: .concurrent)
-        //        group.enter() // 開始呼叫 API2
-        //        queue2.async(group: group) {
-        //            //在查完相關車次後加入延遲時間api
-        //            self.loadTimeData { (timeData) in
-        //                for time in timeData {
-        //                    //將資料裝入自創字典
-        //                    self.dealyDic[time.trainNo] = time.delayTime
-        //                }
-        ////                print(self.dealyDic)
-        //            }
-        //            group.leave()
-        //        }
+    
         group.notify(queue: DispatchQueue.main) {
             //將整理後資料加入新建立資料格式
             
@@ -230,7 +227,8 @@ class StationVC: UIViewController {
             }
             
         }
-        print(self.newDataList)
+        
+        print("列車班次",self.newDataList)
     }
     
     @IBAction func priceAction(_ sender: Any) {
@@ -254,6 +252,12 @@ extension StationVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StationCell", for: indexPath) as! StationCell
         let cellData = newDataList[indexPath.row]
+        //判斷查詢日期是否為當日
+        if todayString == traDateStation.first?.trainDate || todayString == thsrDateStation.first?.trainDate {
+            cell.trainToday = true
+        } else {
+            cell.trainToday = false
+        }
         cell.data = cellData
         cell.setupData()
         return cell
