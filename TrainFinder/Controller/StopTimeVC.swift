@@ -24,7 +24,7 @@ class StopTimeVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        request()
+        //        request()
     }
     
     func configureUI() {
@@ -40,52 +40,26 @@ class StopTimeVC: UIViewController {
         myTableView.register(UINib(nibName: "StopTimeCell", bundle: nil), forCellReuseIdentifier: "cell")
     }
     
-    //MARK:撈api資料
-    func loadData(complete: @escaping([Station_StopTime]) -> Void) {
-        let stopTimeUrl = "https://ptx.transportdata.tw/MOTC/v2/Rail/\(newTrainTypeStr)/DailyTimetable/TrainNo/\(trainNO)/TrainDate/\(trainDate)?$top=30&$format=JSON"
-        print("url:", stopTimeUrl)
-        guard let url = URL(string: stopTimeUrl) else { return }
-        var request = URLRequest(url: url)
-        request.setValue(xdate, forHTTPHeaderField: "x-date")
-        request.setValue(authorization, forHTTPHeaderField: "Authorization")
-        request.setValue("gzip", forHTTPHeaderField: "Accept-Encoding")
-        
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard let data = data  else { return }
-            do {
-                let result = try JSONDecoder().decode([Station_StopTime].self, from: data)
-                if result.isEmpty {
-                    complete([])
-                } else {
-                    complete(result)
-                }
-            } catch {
-                print(error.localizedDescription)
-                DispatchQueue.main.async {
-                    self.alert(title: "系統異常", message: "請稍後再嘗試")
-                    ShareView.shared.stopLoading()
-                }
-            }
-        }.resume()
-    }
-    
     //MARK:判斷資料裝進物件
     func request() {
         ShareView.shared.startLoading()
-        loadData { (data) in
-            if data.isEmpty {
-                DispatchQueue.main.async {
-                    self.alert(title: "查無相關車次", message: "該班可能無直達車需轉乘")
+        
+            ServerCommunicator.shared.loadStopStation(newTrainTypeStr: newTrainTypeStr,
+                                                  trainNO: self.trainNO,
+                                                  trainDate: self.trainDate) { data in
+                if data.isEmpty {
+                    DispatchQueue.main.async {
+                        self.alert(title: "查無相關車次", message: "該班可能無直達車需轉乘")
+                    }
+                } else {
+                    self.dataList = data.first?.stopTimes ?? []
+                    print("有資料:", self.dataList)
                 }
-            } else {
-                self.dataList = data.first?.stopTimes ?? []
-                print("有資料:", self.dataList)
+                DispatchQueue.main.async {
+                    ShareView.shared.stopLoading()
+                    self.myTableView.reloadData()
+                }
             }
-            DispatchQueue.main.async {
-                ShareView.shared.stopLoading()
-                self.myTableView.reloadData()
-            }
-        }
     }
     
 }

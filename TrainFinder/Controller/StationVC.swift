@@ -68,11 +68,6 @@ class StationVC: UIViewController {
     //MARK: - Helpers
     
     func initialize() {
-//        if trainType == .台鐵{
-//            newTrainTypeStr = "TRA"
-//        } else {
-//            newTrainTypeStr = "THSR"
-//        }
         let formatter = DateFormatter()
         
         formatter.dateFormat = "yyyy-MM-dd"
@@ -137,7 +132,7 @@ class StationVC: UIViewController {
         queue1.async(group: group) {
             switch trainType {
             case.台鐵 :
-                ServerCommunicator.shared.loadThsrData(newTrainTypeStr: newTrainTypeStr, originStationID: self.originStationID, destinationStationID: self.destinationStationID, trainDate: self.trainDate) {(data) in
+                ServerCommunicator.shared.loadTraData(newTrainTypeStr: newTrainTypeStr, originStationID: self.originStationID, destinationStationID: self.destinationStationID, trainDate: self.trainDate) {(data) in
             
                     if data.isEmpty {
                         DispatchQueue.main.async {
@@ -194,7 +189,7 @@ class StationVC: UIViewController {
                     }
                 }
             case.高鐵 :
-                ServerCommunicator.shared.loadHsrData(newTrainTypeStr: newTrainTypeStr, originStationID: self.originStationID, destinationStationID: self.destinationStationID, trainDate: self.trainDate) {(data) in
+                ServerCommunicator.shared.loadThsrData(newTrainTypeStr: newTrainTypeStr, originStationID: self.originStationID, destinationStationID: self.destinationStationID, trainDate: self.trainDate) {(data) in
                     
                     if data.isEmpty {
                         DispatchQueue.main.async {
