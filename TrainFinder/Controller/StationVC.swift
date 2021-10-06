@@ -55,6 +55,8 @@ class StationVC: UIViewController {
     var dateStation: Codable?
     
     var todayString = ""
+    //判斷是不是搜尋當天列車 是就回傳true
+    var trainToday = true
     
     //MARK: - Lifeycle
     override func viewDidLoad() {
@@ -250,8 +252,10 @@ extension StationVC: UITableViewDelegate, UITableViewDataSource {
         //判斷查詢日期是否為當日
         if todayString == traDateStation.first?.trainDate || todayString == thsrDateStation.first?.trainDate {
             cell.trainToday = true
+            self.trainToday = true
         } else {
             cell.trainToday = false
+            self.trainToday = false
         }
         cell.data = cellData
         cell.setupData()
@@ -263,13 +267,14 @@ extension StationVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         if let vc = storyboard?.instantiateViewController(withIdentifier: "StopTimeVC") as? StopTimeVC {
             if trainType == .台鐵{
                 vc.trainNO = self.traDateStation[indexPath.row].dailyTrainInfo?.trainNo ?? ""
             } else {
                 vc.trainNO = self.thsrDateStation[indexPath.row].dailyTrainInfo?.trainNo ?? ""
             }
-            
+            vc.trainToday = self.trainToday
             vc.trainDate = self.trainDate
             self.navigationController?.pushViewController(vc, animated: true)
         }

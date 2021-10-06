@@ -15,6 +15,9 @@ class StopTimeVC: UIViewController {
     var trainNO = ""
     var trainDate = ""
     
+    //判斷是不是搜尋當天列車 是就回傳true
+    var trainToday = true
+    
     //MARK: - Lifeycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +31,9 @@ class StopTimeVC: UIViewController {
     }
     
     func configureUI() {
-        ShareView.shared.setBackground(view: view)
+//        ShareView.shared.setBackground(view: view)
         self.navigationItem.title = trainNO
+        print(self.trainToday)
     }
     
     //MARK:設定table
@@ -64,6 +68,7 @@ class StopTimeVC: UIViewController {
     
 }
 extension StopTimeVC: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataList.count
     }
@@ -71,23 +76,10 @@ extension StopTimeVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)as! StopTimeCell
         let cellData = dataList[indexPath.row]
-        cell.data = cellData
+        cell.cellData = cellData
+        cell.dataList = self.dataList
+        cell.trainToday = self.trainToday
         cell.setupData()
-        //下條件撈出到達時間 大於 現在時間
-        let result = dataList.filter { (i) -> Bool in
-            return cell.time <= ShareView.shared.timeToTimeStamp(time: i.arrivalTime)
-        }
-        //在跟陣列中時間比對 <= 最接近的到達時間
-        if cellData.arrivalTime ==  result.first?.arrivalTime ?? "" {
-            cell.myGif.loadGif(name: "train2")
-            cell.stationNameLabel.textColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
-        } else if ShareView.shared.timeToTimeStamp(time:cellData.departureTime) <= cell.time {
-            cell.myGif.image = UIImage(named: "pass")
-            cell.stationNameLabel.textColor = #colorLiteral(red: 0.04386587473, green: 0.7064148036, blue: 0.3536839813, alpha: 1)
-        } else {
-            cell.myGif.image = UIImage(named: "")
-            cell.stationNameLabel.textColor = #colorLiteral(red: 0.05110876679, green: 0.2072706686, blue: 0.7945691506, alpha: 1)
-        }
         return cell
     }
     

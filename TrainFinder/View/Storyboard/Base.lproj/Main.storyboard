@@ -395,11 +395,11 @@
             </objects>
             <point key="canvasLocation" x="1786.9565217391305" y="806.91964285714278"/>
         </scene>
-        <!--Item-->
+        <!--台鐵-->
         <scene sceneID="3xe-rM-7to">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="81S-ms-XXs" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="LrQ-sV-zCw"/>
+                    <tabBarItem key="tabBarItem" title="台鐵" image="tra" id="LrQ-sV-zCw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bW7-aZ-Fre">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -414,11 +414,11 @@
             </objects>
             <point key="canvasLocation" x="879.71014492753625" y="128.57142857142856"/>
         </scene>
-        <!--Item-->
+        <!--高鐵-->
         <scene sceneID="kCj-3K-Q1e">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CZP-F0-u3B" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Srd-6D-bXV"/>
+                    <tabBarItem key="tabBarItem" title="高鐵" image="thsr" id="Srd-6D-bXV"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1px-1J-lOL">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -435,6 +435,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="thsr" width="24" height="24"/>
+        <image name="tra" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

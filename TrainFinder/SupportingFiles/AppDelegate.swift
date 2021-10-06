@@ -17,7 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        navigationBarColor.barTintColor = #colorLiteral(red: 0.976000011, green: 0.8496015072, blue: 0.5488778949, alpha: 1)
 //        navigationBarColor.tintColor = .black
 //        navigationBarColor.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        let tabBarColor =  UITabBar.appearance()
         
+        tabBarColor.tintColor = .black
         return true
     }
     
