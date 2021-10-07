@@ -45,9 +45,18 @@ class ThsrVc: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
-        trainType = .高鐵
+        initialize()
         requestData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        initialize()
+    }
+    
+    func initialize() {
+        trainType = .高鐵
+        self.tabBarController?.tabBar.isHidden = false
+        configureUI()
     }
     
     func configureUI() {
@@ -219,7 +228,7 @@ class ThsrVc: UIViewController {
                 
                 DispatchQueue.main.async {
                     ShareView.shared.stopLoading()
-                    print(self.stationList)
+//                    print(self.stationList)
                 }
             } catch {
                 print(error.localizedDescription)

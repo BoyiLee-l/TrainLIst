@@ -52,14 +52,25 @@ class TraVc: UIViewController {
     var pickArr = [String : [(station: String, id: String)]]()
     
     var cityName = "基隆市"
-
+    
+    var tabBarHidden = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        trainType = .台鐵
-        configureUI()
+        initialize()
         requestData()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        initialize()
+    }
+    
+    func initialize() {
+        trainType = .台鐵
+        self.tabBarController?.tabBar.isHidden = false
+        configureUI()
+    }
+    
     
     func configureUI() {
         ShareView.shared.setBackground(view: view)
@@ -249,7 +260,7 @@ class TraVc: UIViewController {
 //                print(self.pickArr)
                 DispatchQueue.main.async {
                     ShareView.shared.stopLoading()
-                    print(self.cityList.count)
+//                    print(self.cityList.count)
                 }
             } catch {
                 print(error.localizedDescription)

@@ -44,7 +44,6 @@ class StopTimeCell: UITableViewCell {
     }
     
     func setupData() {
-        
         stationNameLabel.text = cellData?.stationName?.zhTw
         arrivalTimeLabel.text = cellData?.arrivalTime
         departureTimeLabel.text = cellData?.departureTime
