@@ -16,6 +16,12 @@ struct newTrainData {
     var delayTime = 0
 }
 
+enum SearchDate {
+    case 過去
+    case 當天
+    case 未來
+}
+
 class StationVC: UIViewController {
     
     //MARK: - Properties
@@ -48,15 +54,10 @@ class StationVC: UIViewController {
     
     var trainDate = ""
     
-//    var newTrainType: TrainType = .台鐵
-    
-//    var newTrainTypeStr = "TRA"
-    
-    var dateStation: Codable?
-    
     var todayString = ""
     //判斷是不是搜尋當天列車 是就回傳true
     var trainToday = true
+    var choseDate: SearchDate = .當天
     
     //MARK: - Lifeycle
     override func viewDidLoad() {
@@ -226,7 +227,7 @@ class StationVC: UIViewController {
             
         }
         
-        print("列車班次",self.newDataList)
+//        print("列車班次",self.newDataList)
     }
     
     @IBAction func priceAction(_ sender: Any) {
@@ -251,13 +252,20 @@ extension StationVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StationCell", for: indexPath) as! StationCell
         let cellData = newDataList[indexPath.row]
         //判斷查詢日期是否為當日
-        if todayString == traDateStation.first?.trainDate || todayString == thsrDateStation.first?.trainDate {
-            cell.trainToday = true
-            self.trainToday = true
+        if todayString == trainDate || todayString == trainDate {
+            cell.choseDate = .當天
+            self.choseDate = .當天
+            
+        } else if todayString > (trainDate) || todayString > (trainDate) {
+            
+            cell.choseDate = .過去
+            self.choseDate = .過去
+            
         } else {
-            cell.trainToday = false
-            self.trainToday = false
+            cell.choseDate = .未來
+            self.choseDate = .未來
         }
+        
         cell.data = cellData
         cell.setupData()
         return cell
@@ -275,8 +283,10 @@ extension StationVC: UITableViewDelegate, UITableViewDataSource {
             } else {
                 vc.trainNO = self.thsrDateStation[indexPath.row].dailyTrainInfo?.trainNo ?? ""
             }
-            vc.trainToday = self.trainToday
+            
             vc.trainDate = self.trainDate
+            
+            vc.choseDate = self.choseDate
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

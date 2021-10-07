@@ -21,7 +21,7 @@ class StopTimeCell: UITableViewCell {
     
     var cellData: StopTime?
     
-    var trainToday = true
+    var choseDate: SearchDate = .當天
     
     let time = ShareView.shared.timeToTimeStamp(time: ShareView.shared.nowTime())
     
@@ -49,14 +49,14 @@ class StopTimeCell: UITableViewCell {
         departureTimeLabel.text = cellData?.departureTime
         //print(time, doubleArrival, doubleDepartue)
         
-        //如果查詢日期適當日在做下面步驟
-        if trainToday == true {
+        switch choseDate {
+        case .當天:
             //下條件撈出到達時間 大於 現在時間
             let result = dataList.filter { (i) -> Bool in
                 return self.time <= ShareView.shared.timeToTimeStamp(time: i.arrivalTime)
             }
             //在跟陣列中時間比對 <= 最接近的到達時間
-            if cellData?.arrivalTime ==  result.first?.arrivalTime ?? "" {
+            if cellData?.departureTime ==  result.first?.departureTime ?? "" {
                 self.myGif.loadGif(name: "train2")
                 self.stationNameLabel.textColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
                 
@@ -64,12 +64,15 @@ class StopTimeCell: UITableViewCell {
                 self.myGif.image = UIImage(named: "pass")
                 self.stationNameLabel.textColor = #colorLiteral(red: 0.04386587473, green: 0.7064148036, blue: 0.3536839813, alpha: 1)
             } else {
-                self.myGif.image = UIImage(named: "")
+                self.myGif.image = UIImage(named: "soon")
                 self.stationNameLabel.textColor = #colorLiteral(red: 0.05110876679, green: 0.2072706686, blue: 0.7945691506, alpha: 1)
             }
-        } else {
-            self.myGif.image = UIImage(named: "")
+        case .未來:
+            self.myGif.image = UIImage(named: "soon")
             self.stationNameLabel.textColor = #colorLiteral(red: 0.05110876679, green: 0.2072706686, blue: 0.7945691506, alpha: 1)
+        case .過去:
+            self.myGif.image = UIImage(named: "pass")
+            self.stationNameLabel.textColor = #colorLiteral(red: 0.04386587473, green: 0.7064148036, blue: 0.3536839813, alpha: 1)
         }
     }
     

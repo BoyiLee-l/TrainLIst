@@ -14,8 +14,9 @@ class StationCell: UITableViewCell {
     @IBOutlet weak var startTime: UILabel!
     @IBOutlet weak var endTime: UILabel!
     @IBOutlet weak var delayTime: UILabel!
+    
     var data: newTrainData?
-    var trainToday = true
+    var choseDate: SearchDate = .當天
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,7 +41,8 @@ class StationCell: UITableViewCell {
         self.startTime.text = data?.arrivalTime
         self.endTime.text = data?.departureTime
         
-        if trainToday == true {
+        switch choseDate {
+        case.當天:
             if ShareView.shared.timeToTimeStamp(time: ShareView.shared.nowTime()) > ShareView.shared.timeToTimeStamp(time: data?.arrivalTime ?? "") {
                 delayTime.text = "已出發"
                 delayTime.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
@@ -55,9 +57,12 @@ class StationCell: UITableViewCell {
                     delayTime.textColor = #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)
                 }
             }
-        } else {
+        case.未來:
             delayTime.text = "未發車"
             delayTime.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        case.過去:
+            delayTime.text = "已出發"
+            delayTime.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         }
         
         startTime.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)

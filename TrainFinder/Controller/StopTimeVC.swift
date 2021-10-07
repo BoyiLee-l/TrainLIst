@@ -15,8 +15,8 @@ class StopTimeVC: UIViewController {
     var trainNO = ""
     var trainDate = ""
     
-    //判斷是不是搜尋當天列車 是就回傳true
-    var trainToday = true
+    //判斷是不是搜尋當天列車
+    var choseDate: SearchDate = .當天
     
     //MARK: - Lifeycle
     override func viewDidLoad() {
@@ -27,13 +27,13 @@ class StopTimeVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //        request()
+    
     }
     
     func configureUI() {
 //        ShareView.shared.setBackground(view: view)
         self.navigationItem.title = trainNO
-        print(self.trainToday)
+        print(self.choseDate)
     }
     
     //MARK:設定table
@@ -78,7 +78,7 @@ extension StopTimeVC: UITableViewDelegate, UITableViewDataSource {
         let cellData = dataList[indexPath.row]
         cell.cellData = cellData
         cell.dataList = self.dataList
-        cell.trainToday = self.trainToday
+        cell.choseDate = self.choseDate
         cell.setupData()
         return cell
     }
