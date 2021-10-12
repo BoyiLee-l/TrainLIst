@@ -105,6 +105,7 @@ class ThsrVc: UIViewController {
                 tf.layer.borderColor = UIColor.black.cgColor
                 tf.layer.borderWidth = 1
                 tf.layer.cornerRadius = 5
+                tf.delegate = self
             }
         }
     }
@@ -282,4 +283,11 @@ extension ThsrVc: UIPickerViewDelegate, UIPickerViewDataSource {
             destinationStationName = stationList[row].station
         }
     }
+}
+
+extension ThsrVc: UITextFieldDelegate {
+        func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+            textField.resignFirstResponder()
+            return false
+        }
 }

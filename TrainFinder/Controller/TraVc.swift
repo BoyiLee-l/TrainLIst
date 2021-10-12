@@ -342,8 +342,8 @@ extension TraVc: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 }
 extension TraVc: UITextFieldDelegate {
-    //    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-    //        textField.resignFirstResponder()
-    //        return false
-    //    }
+        func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+            textField.resignFirstResponder()
+            return false
+        }
 }
