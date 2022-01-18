@@ -40,7 +40,7 @@ class ServerCommunicator {
                      originStationID:String,
                      destinationStationID:String,
                      trainDate:String,
-                     complete: @escaping([Tra_DateStation]) -> Void) {
+                     complete: @escaping([TraDateStation]) -> Void) {
         
         let dateStationUrl = "https://ptx.transportdata.tw/MOTC/v2/Rail/\(newTrainTypeStr)/DailyTimetable/OD/\(originStationID)/to/\(destinationStationID)/\(trainDate)?$format=JSON"
         print(dateStationUrl)
@@ -52,10 +52,13 @@ class ServerCommunicator {
         
         //車次資料
         URLSession.shared.dataTask(with: request) { (data, response, error) in
-            //            print("列車資料", data)
+            print("列車資料", request)
+            print("Authorization",  authorization)
+            print("x-date",xdate)
             guard let data = data  else { return }
             do {
-                let result = try JSONDecoder().decode([Tra_DateStation].self, from: data)
+                let result = try JSONDecoder().decode([TraDateStation].self, from: data)
+                print("列車資料", result)
                 if result.isEmpty {
                     complete([])
                 } else {
@@ -64,7 +67,7 @@ class ServerCommunicator {
             } catch {
                 print(error.localizedDescription)
                 DispatchQueue.main.async {
-                    //                    self.sclalert.showError("系統異常", subTitle: "請稍後再嘗試")
+                   
                 }
             }
         }.resume()
@@ -86,7 +89,7 @@ class ServerCommunicator {
         
         //車次資料
         URLSession.shared.dataTask(with: request) { (data, response, error) in
-            //            print("列車資料", data)
+            print("列車資料", request)
             guard let data = data  else { return }
             do {
                 let result = try JSONDecoder().decode([Thsr_DateStation].self, from: data)

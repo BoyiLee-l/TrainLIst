@@ -257,10 +257,10 @@ class TraVc: UIViewController {
                     }
                     self.pickArr[c] = arr
                 }
-//                print(self.pickArr)
+                print(self.pickArr)
                 DispatchQueue.main.async {
                     ShareView.shared.stopLoading()
-//                    print(self.cityList.count)
+                    print(self.cityList.count)
                 }
             } catch {
                 print(error.localizedDescription)
@@ -342,8 +342,8 @@ extension TraVc: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 }
 extension TraVc: UITextFieldDelegate {
-        func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-            textField.resignFirstResponder()
-            return false
-        }
+//        func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+//            textField.resignFirstResponder()
+//            return false
+//        }
 }

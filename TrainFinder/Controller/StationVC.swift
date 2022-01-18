@@ -29,7 +29,7 @@ class StationVC: UIViewController {
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var priceBtn: UIButton!
     //裝本來列車資料用
-    var traDateStation = [Tra_DateStation]()
+    var traDateStation = [TraDateStation]()
     
     var thsrDateStation = [Thsr_DateStation]()
     //裝延遲時間用
@@ -137,7 +137,7 @@ class StationVC: UIViewController {
             switch trainType {
             case.台鐵 :
                 ServerCommunicator.shared.loadTraData(newTrainTypeStr: newTrainTypeStr, originStationID: self.originStationID, destinationStationID: self.destinationStationID, trainDate: self.trainDate) {(data) in
-            
+//                    print("車站資料",data)
                     if data.isEmpty {
                         DispatchQueue.main.async {
                             self.alert(title: "查無相關車次", message: "該班可能無直達車需轉乘")

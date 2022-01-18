@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct Tra_DateStation : Codable {
+struct TraDateStation : Codable {
     let dailyTrainInfo : TraDailyTrainInfo?
     let destinationStopTime : TraDestinationStopTime?
     let originStopTime : TraDestinationStopTime?
-    let trainDate : String
-    let versionID : Int
+    let trainDate : String?
+    let versionID : Int?
     
     enum CodingKeys: String, CodingKey {
         case dailyTrainInfo = "DailyTrainInfo"
@@ -55,9 +55,9 @@ struct TraDailyTrainInfo : Codable {
     let trainTypeCode : String
     let trainTypeID : String
     let trainTypeName : TraEndingStationName?
-    let tripHeadsign : String
-    let tripLine : Int
-    let wheelchairFlag : Int
+//    let tripHeadsign : String
+//    let tripLine : Int
+//    let wheelchairFlag : Int
     
     enum CodingKeys: String, CodingKey {
         case bikeFlag = "BikeFlag"
@@ -75,9 +75,9 @@ struct TraDailyTrainInfo : Codable {
         case trainTypeCode = "TrainTypeCode"
         case trainTypeID = "TrainTypeID"
         case trainTypeName = "TrainTypeName"
-        case tripHeadsign = "TripHeadsign"
-        case tripLine = "TripLine"
-        case wheelchairFlag = "WheelchairFlag"
+//        case tripHeadsign = "TripHeadsign"
+//        case tripLine = "TripLine"
+//        case wheelchairFlag = "WheelchairFlag"
     }
 }
 

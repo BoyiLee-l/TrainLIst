@@ -286,8 +286,8 @@ extension ThsrVc: UIPickerViewDelegate, UIPickerViewDataSource {
 }
 
 extension ThsrVc: UITextFieldDelegate {
-        func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-            textField.resignFirstResponder()
-            return false
-        }
+//        func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+//            textField.resignFirstResponder()
+//            return false
+//        }
 }
