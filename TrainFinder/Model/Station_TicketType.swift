@@ -45,3 +45,34 @@ struct DestinationStationName : Codable {
         case zhTw = "Zh_tw"
     }
 }
+
+
+struct Thsr_TicketType: Codable {
+    let destinationStationID : String
+    let destinationStationName : DestinationStationName?
+    let direction : Int
+    let fares : [ThsrFare]?
+    let originStationID : String
+    let originStationName : DestinationStationName?
+    let updateTime : String
+    let versionID : Int
+    enum CodingKeys: String, CodingKey {
+        case destinationStationID = "DestinationStationID"
+        case destinationStationName = "DestinationStationName"
+        case direction = "Direction"
+        case fares = "Fares"
+        case originStationID = "OriginStationID"
+        case originStationName = "OriginStationName"
+        case updateTime = "UpdateTime"
+        case versionID = "VersionID"
+    }
+}
+
+struct ThsrFare : Codable {
+    let price : Int
+    let ticketType : Int
+    enum CodingKeys: String, CodingKey {
+        case price = "Price"
+        case ticketType = "TicketType"
+    }
+}

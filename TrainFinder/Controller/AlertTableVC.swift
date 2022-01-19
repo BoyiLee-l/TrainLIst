@@ -36,6 +36,9 @@ class AlertTableVC: UITableViewController {
         request.setValue(authorization, forHTTPHeaderField: "Authorization")
         request.setValue("gzip", forHTTPHeaderField: "Accept-Encoding")
         
+        print("列車資料", request)
+        print("Authorization",  authorization)
+        print("x-date",xdate)
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let data = data  else { return }
             do {
