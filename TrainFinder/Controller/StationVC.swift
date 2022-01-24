@@ -75,10 +75,8 @@ class StationVC: UIViewController {
         formatter.dateFormat = "yyyy-MM-dd"
         todayString = formatter.string(from: Date())
         print("日期",todayString)
-        
         print("列車型別：",newTrainTypeStr)
         print("座位類別", choseSeat ,originStationID ,destinationStationID, trainDate)
-        
         self.tabBarController?.tabBar.isHidden = true
     }
     

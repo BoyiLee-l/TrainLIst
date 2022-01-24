@@ -105,6 +105,8 @@ class ThsrVc: UIViewController {
                 tf.layer.borderColor = UIColor.black.cgColor
                 tf.layer.borderWidth = 1
                 tf.layer.cornerRadius = 5
+                //取消textField的inputView
+                tf.inputView = UIView(frame: CGRect.zero)
                 tf.delegate = self
             }
         }

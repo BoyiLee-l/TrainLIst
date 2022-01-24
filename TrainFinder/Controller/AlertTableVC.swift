@@ -17,6 +17,7 @@ class AlertTableVC: UITableViewController {
         super.viewDidLoad()
         configureTable()
         request()
+        print("trainType:",trainType)
     }
     
     func configureTable() {
@@ -27,7 +28,8 @@ class AlertTableVC: UITableViewController {
     }
     
     //MARK:撈api資料
-    func loadData(complete: @escaping([Station_TicketType]) -> Void) {
+    //台鐵
+    func loadTraData(complete: @escaping([Station_TicketType]) -> Void) {
         let DateStation = "https://ptx.transportdata.tw/MOTC/v2/Rail/\(newTrainTypeStr)/ODFare/\(OriginStationID)/to/\(DestinationStationID)?$top=30&$format=JSON"
         
         guard let url = URL(string: DateStation) else { return }
@@ -57,21 +59,72 @@ class AlertTableVC: UITableViewController {
         }.resume()
     }
     
+    //高鐵
+    func loadThsrData(complete: @escaping([Thsr_TicketType]) -> Void) {
+        let DateStation = "https://ptx.transportdata.tw/MOTC/v2/Rail/\(newTrainTypeStr)/ODFare/\(OriginStationID)/to/\(DestinationStationID)?$top=30&$format=JSON"
+        
+        guard let url = URL(string: DateStation) else { return }
+        var request = URLRequest(url: url)
+        request.setValue(xdate, forHTTPHeaderField: "x-date")
+        request.setValue(authorization, forHTTPHeaderField: "Authorization")
+        request.setValue("gzip", forHTTPHeaderField: "Accept-Encoding")
+        
+        print("列車資料", request)
+        print("Authorization",  authorization)
+        print("x-date",xdate)
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let data = data  else { return }
+            do {
+                let result = try JSONDecoder().decode([Thsr_TicketType].self, from: data)
+                if result.isEmpty {
+                    complete([])
+                } else {
+                    complete(result)
+                }
+            } catch {
+                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    self.alert(title: "系統異常", message: "請稍後再嘗試")
+                }
+            }
+        }.resume()
+    }
+    
+    
     //MARK:判斷資料裝進物件
     func request() {
         ShareView.shared.startLoading()
-        loadData { (data) in
-            if data.isEmpty {
-                DispatchQueue.main.async {
-                    self.alert(title: "查無相關票價", message: "該班車可能無售票")
+        
+        switch trainType {
+        case .台鐵:
+            loadTraData { (data) in
+                if data.isEmpty {
+                    DispatchQueue.main.async {
+                        self.alert(title: "查無相關票價", message: "該班車可能無售票")
+                    }
+                } else {
+                    self.dataList = data.first?.fares ?? []
+                    print("有資料:", self.dataList)
                 }
-            } else {
-                self.dataList = data.first?.fares ?? []
-                print("有資料:", self.dataList)
+                DispatchQueue.main.async {
+                    ShareView.shared.stopLoading()
+                    self.tableView.reloadData()
+                }
             }
-            DispatchQueue.main.async {
-                ShareView.shared.stopLoading()
-                self.tableView.reloadData()
+        case .高鐵:
+            loadThsrData { (data) in
+                if data.isEmpty {
+                    DispatchQueue.main.async {
+                        self.alert(title: "查無相關票價", message: "該班車可能無售票")
+                    }
+                } else {
+//                    self.dataList = data.first?.fares ?? []
+                    print("有資料:", self.dataList)
+                }
+                DispatchQueue.main.async {
+                    ShareView.shared.stopLoading()
+                    self.tableView.reloadData()
+                }
             }
         }
     }

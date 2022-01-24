@@ -35,7 +35,6 @@ class TraVc: UIViewController {
     var datePicker = UIDatePicker()
     var dateBgView = UIView()
     var pickBgView = UIView()
-//    var pickImageView = UIImageView()
     
     var originStationID = ""
     var originStationName = ""
@@ -69,6 +68,8 @@ class TraVc: UIViewController {
         trainType = .台鐵
         self.tabBarController?.tabBar.isHidden = false
         configureUI()
+        pickBgView.removeFromSuperview()
+        
     }
     
     
@@ -101,7 +102,7 @@ class TraVc: UIViewController {
         navigationController?.navigationBar.isTranslucent = true
         
         navigationController?.navigationBar.overrideUserInterfaceStyle = .dark
-     
+        
     }
     
     //MARK:textFields設定
@@ -121,6 +122,8 @@ class TraVc: UIViewController {
                 tf.layer.borderColor = UIColor.black.cgColor
                 tf.layer.borderWidth = 1
                 tf.layer.cornerRadius = 5
+                //取消textField的inputView
+                tf.inputView = UIView(frame: CGRect.zero)
                 tf.delegate = self
             }
         }
@@ -131,16 +134,17 @@ class TraVc: UIViewController {
         pickBgView.removeFromSuperview()
         datePicker.removeFromSuperview()
         dateBgView.removeFromSuperview()
+        
         //建立pickerview時 縣市名稱都先初始為第一個縣市
-//        cityName = "基隆市"
+        //        cityName = "基隆市"
         // 建立 UIPickerView 設置位置及尺寸
-//        stationPicker = UIPickerView(frame: CGRect(
-//                                        x: fullScreenSize.width * 0.05, y: fullScreenSize.height * 0.3,
-//                                        width: fullScreenSize.width * 0.9, height: fullScreenSize.height * 0.35))
+        //        stationPicker = UIPickerView(frame: CGRect(
+        //                                        x: fullScreenSize.width * 0.05, y: fullScreenSize.height * 0.3,
+        //                                        width: fullScreenSize.width * 0.9, height: fullScreenSize.height * 0.35))
         pickBgView = UIView(frame: CGRect(
-                                x: fullScreenSize.width * 0.05, y: fullScreenSize.height * 0.32,
-                                width: fullScreenSize.width * 0.9, height: fullScreenSize.height * 0.45))
-
+            x: fullScreenSize.width * 0.05, y: fullScreenSize.height * 0.32,
+            width: fullScreenSize.width * 0.9, height: fullScreenSize.height * 0.45))
+        
         stationPicker.backgroundColor = #colorLiteral(red: 0.8392156863, green: 0.5764705882, blue: 0.5411764706, alpha: 1)
         
         // 設定 UIPickerView 的 delegate 及 dataSource
@@ -176,11 +180,11 @@ class TraVc: UIViewController {
         pickBgView.removeFromSuperview()
         dateBgView.removeFromSuperview()
         datePicker = UIDatePicker(frame: CGRect(
-                                    x: 10, y: 0,
-                                    width: fullScreenSize.width * 0.9, height: fullScreenSize.height * 0.35))
+            x: 10, y: 0,
+            width: fullScreenSize.width * 0.9, height: fullScreenSize.height * 0.35))
         dateBgView = UIView(frame: CGRect(
-                            x: fullScreenSize.width * 0.05, y: fullScreenSize.height * 0.33,
-                            width: fullScreenSize.width * 0.9, height: fullScreenSize.height * 0.55))
+            x: fullScreenSize.width * 0.05, y: fullScreenSize.height * 0.33,
+            width: fullScreenSize.width * 0.9, height: fullScreenSize.height * 0.55))
         
         dateBgView.backgroundColor = #colorLiteral(red: 0.8392156863, green: 0.5764705882, blue: 0.5411764706, alpha: 1)
         datePicker.tintColor = #colorLiteral(red: 0.4352941176, green: 0.3568627451, blue: 0.3568627451, alpha: 1)
@@ -342,8 +346,8 @@ extension TraVc: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 }
 extension TraVc: UITextFieldDelegate {
-//        func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-//            textField.resignFirstResponder()
-//            return false
-//        }
+    //        func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+    //            textField.resignFirstResponder()
+    //            return false
+    //        }
 }
