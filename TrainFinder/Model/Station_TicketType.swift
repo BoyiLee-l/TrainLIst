@@ -69,9 +69,13 @@ struct Thsr_TicketType: Codable {
 }
 
 struct ThsrFare : Codable {
+    let cabinClass : Int
+    let fareClass : Int
     let price : Int
     let ticketType : Int
     enum CodingKeys: String, CodingKey {
+        case cabinClass = "CabinClass"
+        case fareClass = "FareClass"
         case price = "Price"
         case ticketType = "TicketType"
     }

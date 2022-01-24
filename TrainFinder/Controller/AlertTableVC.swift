@@ -9,7 +9,8 @@ import UIKit
 
 class AlertTableVC: UITableViewController {
     var size:CGSize?
-    var dataList = [Fare]()
+    var traDataList = [Fare]()
+    var thsrDataList = [ThsrFare]()
     var OriginStationID = ""
     var DestinationStationID = ""
     
@@ -103,8 +104,8 @@ class AlertTableVC: UITableViewController {
                         self.alert(title: "查無相關票價", message: "該班車可能無售票")
                     }
                 } else {
-                    self.dataList = data.first?.fares ?? []
-                    print("有資料:", self.dataList)
+                    self.traDataList = data.first?.fares ?? []
+                    print("有資料:", self.traDataList)
                 }
                 DispatchQueue.main.async {
                     ShareView.shared.stopLoading()
@@ -118,8 +119,8 @@ class AlertTableVC: UITableViewController {
                         self.alert(title: "查無相關票價", message: "該班車可能無售票")
                     }
                 } else {
-//                    self.dataList = data.first?.fares ?? []
-                    print("有資料:", self.dataList)
+                    self.thsrDataList = data.first?.fares ?? []
+                    print("有資料:", self.thsrDataList)
                 }
                 DispatchQueue.main.async {
                     ShareView.shared.stopLoading()
@@ -128,23 +129,96 @@ class AlertTableVC: UITableViewController {
             }
         }
     }
+    //車廂費率
+    func cabinClass(typeNum: Int) -> String {
+        switch typeNum{
+        case 1:
+            return "標準座"
+        case 2:
+            return "商務座"
+        default:
+            return "自由座"
+        }
+    }
+    //年紀費率
+    func fareClass(typeNum: Int) -> String {
+        switch typeNum{
+        case 1:
+            return "成人"
+        case 2:
+            return "學生"
+        case 3:
+            return "孩童"
+        case 4:
+            return "敬老"
+        case 5:
+            return "愛心"
+        case 6:
+            return "愛心孩童"
+        case 7:
+            return "愛心優待"
+        case 8:
+            return "軍警"
+        default:
+            return "法優"
+        }
+    }
+    //票種類型
+    func ticketTypeClass(typeNum: Int) -> String {
+        switch typeNum{
+        case 1:
+            return "單程票"
+        case 2:
+            return "來回票"
+        case 3:
+            return "電子票証"
+        case 4:
+            return "回數票"
+        case 5:
+            return "定期票(30天期)"
+        case 6:
+            return "定期票(60天期)"
+        case 7:
+            return "早鳥票"
+        default:
+            return "團體票"
+        }
+    }
     
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
+        switch trainType {
+        case .台鐵:
+            return 40
+        case .高鐵:
+            return 80
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return dataList.count
+        switch trainType {
+        case .台鐵:
+            return traDataList.count
+        case .高鐵:
+            return thsrDataList.count
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AlertViewTableViewCell
-        cell.ticketType.text = dataList[indexPath.row].ticketType
-        cell.price.text = String(dataList[indexPath.row].price)
-        return cell
+        switch trainType {
+        case .台鐵:
+            cell.ticketType.text = traDataList[indexPath.row].ticketType
+            cell.price.text = String(traDataList[indexPath.row].price)
+            return cell
+        case .高鐵:
+            let ticketData = thsrDataList[indexPath.row]
+            cell.ticketType.text = "票種:\(ticketTypeClass(typeNum: ticketData.ticketType))\n費率:\(fareClass(typeNum: ticketData.fareClass))\n座艙:\(cabinClass(typeNum: ticketData.cabinClass))"
+            cell.price.text = String(ticketData.price)
+            return cell
+        }
+        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
