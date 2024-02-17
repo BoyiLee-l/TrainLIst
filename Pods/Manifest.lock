@@ -1,18 +1,18 @@
 PODS:
   - Alamofire (5.4.1)
-  - MarqueeLabel (4.0.5)
+  - MarqueeLabel (4.4.0)
   - NVActivityIndicatorView (5.1.1):
     - NVActivityIndicatorView/Base (= 5.1.1)
   - NVActivityIndicatorView/Base (5.1.1)
-  - SCLAlertView (0.8)
-  - SnapKit (5.0.1)
-  - SVProgressHUD (2.2.5)
+  - SnapKit (5.6.0)
+  - SVProgressHUD (2.3.1):
+    - SVProgressHUD/Core (= 2.3.1)
+  - SVProgressHUD/Core (2.3.1)
 
 DEPENDENCIES:
   - Alamofire
   - MarqueeLabel
   - NVActivityIndicatorView
-  - SCLAlertView
   - SnapKit
   - SVProgressHUD
 
@@ -21,18 +21,16 @@ SPEC REPOS:
     - Alamofire
     - MarqueeLabel
     - NVActivityIndicatorView
-    - SCLAlertView
     - SnapKit
     - SVProgressHUD
 
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
-  MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
+  MarqueeLabel: d2388949ac58d587303178d56a792ba8a001b037
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
-  SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
-  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SVProgressHUD: 4837c74bdfe2e51e8821c397825996a8d7de6e22
 
-PODFILE CHECKSUM: d6cf68d6c44255931a7b5328827b2047346db7d3
+PODFILE CHECKSUM: c8c79b1b096e9a5ff7f5a2fe6708cd9da5f0c9ee
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.14.3

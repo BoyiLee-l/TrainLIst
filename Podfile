@@ -8,7 +8,6 @@ target 'TrainFinder' do
   # Pods for TrainFinder
  pod 'Alamofire'
  pod 'SVProgressHUD'
- pod 'SCLAlertView'
  pod 'MarqueeLabel'
  pod 'NVActivityIndicatorView'
  pod 'SnapKit'
